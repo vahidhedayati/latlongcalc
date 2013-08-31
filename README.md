@@ -56,10 +56,10 @@ Sample Controller call to this plugin:
 					
 					println "RESULT: "+myoutput
 			
-					double dlongtmin=cl.ret_dlongtmin()
-					double dlongtmax=cl.ret_dlongtmax()
-					double dlatmin=cl.ret_dlatmin()
-					double dlatmax=cl.ret_dlatmax()
+					double dlongtmin=cl.longtmin
+					double dlongtmax=cl.longtmax
+					double dlatmin=cl.latmin
+					double dlatmax=cl.latmax
 					
 					println "LONGTMAX:"+dlongtmax
 					println "LONGTMIN:"+dlongtmin
