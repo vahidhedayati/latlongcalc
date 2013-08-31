@@ -8,7 +8,7 @@ Grails plugin which given a range, longitude and latitude value :  will return m
 
 Sample Controller call to this plugin:
 
-					import grails.groovy.plugin.latlongcalc.CalcLatLong
+			import grails.groovy.plugin.latlongcalc.CalcLatLong
 			
 			//import grails.java.plugin.latlongcalc.CalcLatLong
 			
