@@ -3,7 +3,7 @@ latlongcalc
 
 Grails plugin which given a range, longitude and latitude value :  will return min/max values of longitude and latitude
 
-
+To wrap the plugin call into a service/taglib and call within your views refer to https://github.com/vahidhedayati/RemoteSSH which has an example
 
 
 Sample Controller call to this plugin:
