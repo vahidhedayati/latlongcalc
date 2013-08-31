@@ -1,64 +1,29 @@
 package grails.plugin.latlongcalc;
-import static java.lang.Math.cos;
+
 import static java.lang.Math.abs;
+import static java.lang.Math.cos;
+import static java.lang.Math.PI;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class CalcLatLong {
 
-	double longtmin,longtmax,latmin,latmax;
-	String slongtmin,slongtmax,slatmin,slatmax;
-	String longt,lat,range;
-	
-	public String ret_longtmax () { return slongtmax;}
-	public String ret_longtmin () { return slongtmin;}
-	public String ret_latmin () { return slatmin;}
-	public String ret_latmax () { return slatmax;}
-	 
-	public double ret_dlongtmax () { return longtmax;}
-	public double ret_dlongtmin () { return longtmin;}
-	public double ret_dlatmin () { return latmin;}
-	public double ret_dlatmax () { return latmax;}
+	public Map<String, Double> parse(double radius, double lon, double lat) {
+		double latmin = lat -(radius/69);
+		double latmax = lat +(radius/69);
+		double lonmin = lon - radius/abs(cos(deg2rad(lat))*69);
+		double lonmax = lon + radius/abs(cos(deg2rad(lat))*69);
 
-	public CalcLatLong(String range, String longt, String lat) {
-		this.range=range;
-		this.longt=longt;
-		this.lat=lat;
-	}
-	
-	
-	public String Result() {
-		double radius=DoubleParser(range);
-		double dlat=DoubleParser(lat);
-		double dlongt=DoubleParser(longt);
-		latmin= dlat -(radius/69);
-		latmax= dlat +(radius/69);
-		longtmin= dlongt - radius/abs(cos(deg2rad(dlat))*69);
-		longtmax= dlongt + radius/abs(cos(deg2rad(dlat))*69);
-		slatmin=Double.toString(latmin);
-		slatmax=Double.toString(latmax);
-		slongtmin=Double.toString(longtmin);
-		slongtmax=Double.toString(longtmax);
-		
-		return "[ latmin:"+slatmin+", latmax:"+slatmax+", longtmin:"+slongtmin+", longtmax:"+slongtmax+" ]";
-		
+		Map<String, Double> values = new HashMap<String, Double>();
+		values.put("latmin", latmin);
+		values.put("latmax", latmax);
+		values.put("lonmin", lonmin);
+		values.put("lonmax", lonmax);
+		return values;
 	}
 
-	
-	private double DoubleParser(String value) {
-		 double dret=0.0;
-		 Boolean isvalid=true;
-		 try {
-			 Double.parseDouble(value);
-		 } catch (NumberFormatException e) {
-			 isvalid=false;
-		 }
-		 if (isvalid) {
-			 dret=Double.valueOf(value).doubleValue();
-		 }	 
-		return dret;
-	}
-	
-	
-	
 	private double deg2rad(double deg) {
-		return (deg * Math.PI / 180.0);
+		return (deg * PI / 180.0);
 	}
 }
