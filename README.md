@@ -1,9 +1,7 @@
 latlongcalc
 ===========
 
-Grails plugin which given a range a longitude and latitude value will retun min/max values of longitude and latitude
-
-
+Grails plugin which given a range, longitude and latitude value :  will return min/max values of longitude and latitude
 
 
 
