@@ -1,4 +1,4 @@
-package grails.java.plugin.latlongcalc;
+package grails.plugin.latlongcalc;
 import static java.lang.Math.cos;
 import static java.lang.Math.abs;
 public class CalcLatLong {
