@@ -8,92 +8,49 @@ To wrap the plugin call into a service/taglib and call within your views refer t
 
 Sample Controller call to this plugin:
 
-			import grails.groovy.plugin.latlongcalc.CalcLatLong
-			
-			//import grails.java.plugin.latlongcalc.CalcLatLong
-			
-			class LinkController {
-			
-			    def index() { }
-			
-				def calcthis() {
-					// This will calculate the min max values of a latlong value with a given range
-					//CalcLatLong cl=new CalcLatLong(range,Longitude,Latitude) 
-					
-					
-					// USING DECLARATION:
-					/*
-					 * import grails.java.plugin.latlongcalc.CalcLatLong
-					 */
-					
-					/*
-					CalcLatLong cl=new CalcLatLong('30','10.810547','4.017699')
-					println cl.Result()
-					def longtmin=cl.ret_longtmin()
-					def longtmax=cl.ret_longtmax()
-					def latmin=cl.ret_latmin()
-					def latmax=cl.ret_latmax()
-					println "LONGTMAX:"+cl.ret_longtmax()
-					println "LONGTMIN:"+cl.ret_longtmin()
-					println "LATMIN:"+cl.ret_latmin()
-					println "LATMAX:"+cl.ret_latmax()
-					*/
-					
-					/*returns:
-					[ latmin:3.582916391304348, latmax:4.452481608695653, longtmin:10.37469326090218, longtmax:11.246400739097819 ]
-					LONGTMAX:11.246400739097819
-					LONGTMIN:10.37469326090218
-					LATMIN:3.582916391304348
-					LATMAX:4.452481608695653*/
-					
-					//Declaration : import grails.groovy.plugin.latlongcalc.CalcLatLong
-					CalcLatLong cl=new CalcLatLong();
-					cl.range='30'
-					cl.longt='10.810547'
-					cl.lat='4.017699'
-					// THIS MUST BE DONE BEFORE ATTEMPTING TO GET return values
-					def myoutput=cl.Result()
-					
-					println "RESULT: "+myoutput
-			
-					double dlongtmin=cl.longtmin
-					double dlongtmax=cl.longtmax
-					double dlatmin=cl.latmin
-					double dlatmax=cl.latmax
-					
-					println "LONGTMAX:"+dlongtmax
-					println "LONGTMIN:"+dlongtmin
-					println "LATMIN:"+dlatmin
-					println "LATMAX:"+dlatmax
-			
-					/* RETURNS:
-					 * 
-					 */
-					/*RESULT: [ latmin:3.582916391304348, latmax:4.452481608695653, longtmin:10.37469326090218, longtmax:11.246400739097819 ]
-					LONGTMAX:11.246400739097819
-					LONGTMIN:10.37469326090218
-					LATMIN:3.582916391304348
-					LATMAX:4.452481608695653*/
-					
-					
-					/*Assuming you have a postcode domain which holds all postcodes and lat/long values 
-					  + with above call 
-					  + below query 
-					  = All valid postcodes in that range
-			
-					class PostCodes {
-						
-						String postcode
-						double longitude
-						double latitude
-						
-					}*/
-			
-					
-					def result=PostCodes.findByLongitudeBetweenAndLatitudeBetween(dlongtmin,dlongtmax,dlatmin,dlatmax)
-						result.each{ found->
-							output+=found.postcode
-						}
-					
-				}
-			}
+    import grails.plugin.latlongcalc.CalcLatLong
+
+    class LinkController {
+
+       def index() { }
+
+       def calcthis() {
+          // This will calculate the min max values of a latlong value with a given range
+          //CalcLatLong cl=new CalcLatLong(range,Longitude,Latitude)
+
+          CalcLatLong cl = new CalcLatLong()
+          def values = cl.parse(30, 10.810547, 4.017699)
+
+          double lonmin = values.lonmin
+          double lonmax = values.lonmax
+          double latmin = values.latmin
+          double latmax = values.latmax
+
+          println "LONMAX: $lonmax"
+          println "LONMIN: $lonmin"
+          println "LATMIN: $latmin"
+          println "LATMAX: $latmax"
+
+          /*prints:
+            LONGTMAX: 11.246400739097819
+            LONGTMIN: 10.37469326090218
+            LATMIN: 3.582916391304348
+            LATMAX: 4.452481608695653*/
+
+          /*Assuming you have a postcode domain which holds all postcodes and lat/long values
+            + with above call
+            + below query
+            = All valid postcodes in that range
+
+            class PostCodes {
+                String postcode
+                double longitude
+                double latitude
+            }*/
+
+          def results = PostCodes.findAllByLongitudeBetweenAndLatitudeBetween(lonmin,lonmax,latmin,latmax)
+          results.each { found ->
+              output += found.postcode
+          }
+       }
+    }
