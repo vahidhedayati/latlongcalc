@@ -43,7 +43,7 @@ public class CalcLatLong {
 
 	
 	private double DoubleParser(String value) {
-		 double dret=0;
+		 double dret=0.0;
 		 Boolean isvalid=true;
 		 try {
 			 Double.parseDouble(value);
