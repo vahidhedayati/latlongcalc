@@ -7,16 +7,6 @@ class CalcLatLong {
 	String slongtmin,slongtmax,slatmin,slatmax
 	String longt,lat,range
 	
-	public String ret_longtmax() { return slongtmax}
-	public String ret_longtmin() { return slongtmin}
-	public String ret_latmin() { return slatmin}
-	public String ret_latmax() { return slatmax}
-	
-	public double ret_dlongtmax() { return longtmax}
-	public double ret_dlongtmin() { return longtmin}
-	public double ret_dlatmin() { return latmin}
-	public double ret_dlatmax() { return latmax}
-	
 	
 	public String Result() {
 		double radius=DoubleParser(range)
