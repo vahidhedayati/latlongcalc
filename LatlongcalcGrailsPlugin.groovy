@@ -1,6 +1,6 @@
 class LatlongcalcGrailsPlugin {
 	def version = "0.1"
-	def grailsVersion = "1.0 > *"
+	def grailsVersion = "1.3 > *"
 	def title = "Latitude Longitude Range calculator"
 	def author = "Vahid Hedayati"
 	def authorEmail = "badvad@gmail.com"
