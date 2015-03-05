@@ -5,6 +5,11 @@ Grails plugin which given a range, longitude and latitude value :  will return m
 
 To wrap the plugin call into a service/taglib and call within your views refer to https://github.com/vahidhedayati/RemoteSSH which has an example
 
+### Grails 2.X
+```
+compile latlongcalc:0.1
+```
+
 
 Sample Controller call to this plugin:
 
