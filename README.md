@@ -10,6 +10,7 @@ To wrap the plugin call into a service/taglib and call within your views refer t
 compile latlongcalc:0.1
 ```
 
+Grails 3: https://bintray.com/artifact/download/vahid/maven/latlongcalc-0.2.jar
 
 Sample Controller call to this plugin:
 
